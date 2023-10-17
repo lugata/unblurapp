@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "693519249181",
+    "project_id": "unblurapp-4ed35",
+    "storage_bucket": "unblurapp-4ed35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693519249181:android:c4105c0b7395a3f2b17bf4",
+        "android_client_info": {
+          "package_name": "com.lugata_ata.unblur_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtgsauLPtIGAln2vsrr5BVJp6rOGDR-s8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
