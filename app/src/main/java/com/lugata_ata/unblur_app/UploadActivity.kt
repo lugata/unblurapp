@@ -67,11 +67,19 @@ import java.util.UUID
 @Composable
 fun UploadActivity(navController: NavController, viewModel: MainViewModel) {
 
+    // Variabel untuk menyimpan gambar yang dipilih
     var selectedImage by remember { mutableStateOf<Bitmap?>(null) }
+
+    // Variabel untuk menandakan apakah sedang proses upload atau tidak
     var isUploading by remember { mutableStateOf(false) }
+
+    // Context dari activity saat ini
     val context = LocalContext.current
+
+    // Coroutine scope untuk menjalankan proses upload
     val scope = rememberCoroutineScope()
 
+    // Retrofit service untuk mengirim gambar ke After API
     val afterService = remember {
         Retrofit.Builder()
             .baseUrl("https://api.replicate.com/v1/")
@@ -81,16 +89,18 @@ fun UploadActivity(navController: NavController, viewModel: MainViewModel) {
     }
 
     //UI
+    // Stroke untuk border pada kotak upload
     val stroke = Stroke(width = 8f,
         pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
     )
 
+    // Fungsi untuk memilih gambar dari galeri
     val getContent = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         uri?.let { imageUri ->
             val inputStream = context.contentResolver.openInputStream(imageUri)
             selectedImage = BitmapFactory.decodeStream(inputStream)
 
-            // After selecting the image, immediately start processing
+            // Set isUploading menjadi true dan jalankan proses upload
             if (selectedImage != null) {
                 isUploading = true
                 scope.launch {
@@ -101,34 +111,36 @@ fun UploadActivity(navController: NavController, viewModel: MainViewModel) {
                             // Ambil gambar hasil dari After API
                             val base64AfterImage = afterResponse.output
 
-                            // Save the URL of the uploaded image
+                            // Simpan URL dari gambar yang diupload
                             viewModel.uploadedImage.value = afterResponse.input.image
                             viewModel.afterImage.value = base64AfterImage
 
+                            // Navigate ke halaman Result
                             navController.navigate("Result")
                         } else {
                             Log.e("UploadActivity", "Error: ${afterResponse.status}")
                             Toast.makeText(context, "Error: ${afterResponse.status}", Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: HttpException) {
-                        // Handle the specific HTTP 422 error
+                        // Handle HTTP 422 error
                         val errorBody = e.response()?.errorBody()?.string()
                         Log.e("UploadActivity", "HTTP 422 Error: $errorBody")
-                        // Handle the error and display an appropriate message to the user
+                        // Handle error dan tampilkan pesan yang sesuai ke user
                         Toast.makeText(context, "HTTP 422 Error: $errorBody", Toast.LENGTH_SHORT).show()
                     } catch (e: Exception) {
-                        // Handle other exceptions
+                        // Handle error lainnya
                         Log.e("UploadActivity", "Error uploading image to After", e)
-                        // Display an error message to the user
+                        // Tampilkan pesan error ke user
                         Toast.makeText(context, "Error uploading image to After", Toast.LENGTH_SHORT).show()
                     } finally {
-                        isUploading = false // Set the flag to false outside the try-catch block
+                        isUploading = false // Set isUploading menjadi false di luar try-catch block
                     }
                 }
             }
         }
     }
 
+    // Tampilan UI
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -150,7 +162,7 @@ fun UploadActivity(navController: NavController, viewModel: MainViewModel) {
                 fontSize = 48.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
-                lineHeight = 54.sp // Set the line height here
+                lineHeight = 54.sp // Set line height di sini
 
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -159,7 +171,7 @@ fun UploadActivity(navController: NavController, viewModel: MainViewModel) {
                 color = Color.LightGray,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center,
-                lineHeight = 24.sp // Set the line height here
+                lineHeight = 24.sp // Set line height di sini
             )
             Spacer(modifier = Modifier.fillMaxHeight(0.1f))
             Box(
@@ -187,6 +199,7 @@ fun UploadActivity(navController: NavController, viewModel: MainViewModel) {
             }
         }
 
+        // Tampilkan progress bar jika sedang proses upload
         if (isUploading) {
             Box(
                 modifier = Modifier
@@ -202,6 +215,7 @@ fun UploadActivity(navController: NavController, viewModel: MainViewModel) {
 
 }
 
+// Fungsi untuk membuat background dengan efek parallax
 @Composable
 fun AestheticBackground() {
     var xOffset by remember { mutableFloatStateOf(0f) }

@@ -53,6 +53,19 @@ import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+/**
+ * Fungsi ini menampilkan hasil dari proses pengaburan gambar. Fungsi ini menerima dua parameter,
+ * yaitu [navController] dan [viewModel]. [navController] digunakan untuk navigasi antar halaman,
+ * sedangkan [viewModel] digunakan untuk mengakses data yang dibutuhkan.
+ *
+ * Fungsi ini mengambil dua gambar, yaitu gambar sebelum dan sesudah proses pengaburan. Gambar-gambar
+ * tersebut ditampilkan dalam satu layout yang memungkinkan pengguna untuk membandingkan keduanya.
+ * Selain itu, fungsi ini juga menyediakan tombol untuk kembali ke halaman sebelumnya dan tombol
+ * untuk mengunduh gambar hasil pengaburan.
+ *
+ * @param navController NavController yang digunakan untuk navigasi antar halaman.
+ * @param viewModel MainViewModel yang digunakan untuk mengakses data yang dibutuhkan.
+ */
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

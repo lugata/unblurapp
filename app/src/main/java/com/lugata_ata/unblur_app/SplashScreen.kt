@@ -29,11 +29,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.delay
-
+/**
+ * Composable function untuk menampilkan SplashScreen pada aplikasi Unblur App.
+ * SplashScreen menampilkan animasi latar belakang dan logo aplikasi.
+ * Jika semua izin yang diperlukan telah diberikan, SplashScreen akan menavigasikan ke UploadActivity.
+ * Jika tidak, SplashScreen akan menampilkan pesan bahwa izin diperlukan untuk menggunakan aplikasi.
+ *
+ * @param navController objek NavHostController untuk menavigasikan ke UploadActivity.
+ */
 @Composable
 fun SplashScreen(navController: NavHostController) {
     val context = LocalContext.current
     val activity = (LocalContext.current as? Activity)
+
     // Izin yang diperlukan
     val permissions = listOf(
         android.Manifest.permission.INTERNET,
@@ -51,7 +59,6 @@ fun SplashScreen(navController: NavHostController) {
 
     // Mainkan animasi splash screen
 
-    // Tampilan SplashScreen dengan latar belakang animasi
     // Tampilan SplashScreen dengan latar belakang animasi
     Box(
         modifier = Modifier
@@ -83,28 +90,26 @@ fun SplashScreen(navController: NavHostController) {
             )
         }
     }
+
+    // Meminta izin jika belum diberikan
     val requestPermissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissionsResult ->
         if (permissionsResult.all { it.value }) {
             // Semua izin telah diberikan, navigasikan ke "UploadActivity"
-
-
-                navController.navigate("Upload")
-
+            navController.navigate("Upload")
         } else {
             // Tampilkan pesan bahwa izin diperlukan untuk menggunakan aplikasi
-                Toast.makeText(
-                    context,
-                    "Izin diperlukan untuk menggunakan aplikasi",
-                    Toast.LENGTH_SHORT
-                ).show()
+            Toast.makeText(
+                context,
+                "Izin diperlukan untuk menggunakan aplikasi",
+                Toast.LENGTH_SHORT
+            ).show()
 
             activity?.finish()
         }
     }
 
-    // Meminta izin jika belum diberikan
     if (!allPermissionsGranted) {
         // Implementasikan logika meminta izin di sini
         LaunchedEffect(key1 = true) {
@@ -118,6 +123,4 @@ fun SplashScreen(navController: NavHostController) {
             navController.navigate("Upload")
         }
     }
-
-
 }

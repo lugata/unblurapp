@@ -16,6 +16,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.lugata_ata.unblur_app.ui.theme.MyApplicationTheme
 
+/**
+ * Kelas MainActivity adalah kelas utama yang menampilkan aplikasi UnBlur.
+ * Kelas ini mengatur tampilan aplikasi dan menggunakan ViewModel untuk berbagi data antara UploadActivity dan ResultActivity.
+ */
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,14 +41,20 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ * Kelas MainViewModel adalah kelas ViewModel yang digunakan untuk berbagi data antara UploadActivity dan ResultActivity.
+ * Kelas ini menyimpan gambar yang diunggah oleh pengguna dan hasil dari API After.
+ */
 class MainViewModel : ViewModel() {
-    // Menyimpan gambar yang diunggah oleh pengguna dan hasil dari API After
     val uploadedImage = mutableStateOf<String?>(null)
     val afterImage = mutableStateOf<String?>(null)
-
 }
 
-
+/**
+ * Fungsi Nav adalah fungsi yang menampilkan navigasi antara tiga activity: SplashScreen, UploadActivity, dan ResultActivity.
+ * Fungsi ini menggunakan NavHost dan NavController untuk mengatur navigasi.
+ * Fungsi ini juga menggunakan MainViewModel untuk berbagi data antara UploadActivity dan ResultActivity.
+ */
 @Composable
 fun Nav(viewModel: MainViewModel) {
     val navController = rememberNavController()
