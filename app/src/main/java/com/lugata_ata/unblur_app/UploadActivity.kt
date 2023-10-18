@@ -297,7 +297,7 @@ suspend fun sendImageToAfter(image: Bitmap, afterService: AfterService): AfterRe
             input = InputData(image = imageUrl)
         )
 
-        val token = "r8_Xj7Amvpcn52Ux5bYyVUA7ewvCB6pMik14LElR" // Gantilah dengan token Anda
+        val token = "r8_5ZWadHj0PlgY92Na4F513H6BCoXVZYu1XAQXm" // Gantilah dengan token Anda
 
         // Kirim permintaan ke API Replicate
         var predictionResponse = afterService.sendImageToAfter("Token $token", afterRequest)
