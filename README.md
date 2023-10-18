@@ -44,3 +44,4 @@ Jika Anda ingin berkontribusi pada pengembangan aplikasi Unblur, Anda dapat meng
 Terima kasih telah menggunakan aplikasi Unblur!
 
 **Catatan**: Project #JuaraAndroid
+Developer : Dauw Bastha Fiastat Lugata
