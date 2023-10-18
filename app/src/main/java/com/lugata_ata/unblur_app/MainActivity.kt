@@ -57,6 +57,7 @@ class MainViewModel : ViewModel() {
  */
 @Composable
 fun Nav(viewModel: MainViewModel) {
+
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "Splash" ){
         composable(route = "Splash") {

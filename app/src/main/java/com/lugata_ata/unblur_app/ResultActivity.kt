@@ -70,6 +70,7 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ResultActivity(navController: NavController, viewModel: MainViewModel) {
+
     val uploadedImage = viewModel.uploadedImage.value
     val afterImage = viewModel.afterImage.value
 
@@ -78,6 +79,7 @@ fun ResultActivity(navController: NavController, viewModel: MainViewModel) {
 
     // A flag to keep track of whether both images have loaded
     var imagesLoaded by remember { mutableStateOf(false) }
+
 
     // Load images in a LaunchedEffect
     LaunchedEffect(uploadedImage, afterImage) {
@@ -148,6 +150,7 @@ fun ResultActivity(navController: NavController, viewModel: MainViewModel) {
                     Text("Download")
                 }
             }
+            
 
             if (imagesLoaded) {
                 BeforeAfterLayout(
