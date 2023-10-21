@@ -45,7 +45,6 @@ fun SplashScreen(navController: NavHostController) {
     // Izin yang diperlukan
     val permissions = listOf(
         android.Manifest.permission.INTERNET,
-        android.Manifest.permission.ACCESS_MEDIA_LOCATION,
         android.Manifest.permission.READ_EXTERNAL_STORAGE,
         android.Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
