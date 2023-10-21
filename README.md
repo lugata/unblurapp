@@ -22,7 +22,7 @@ Sebelum Anda mulai menggunakan aplikasi Unblur, pastikan Anda memenuhi prasyarat
 1. Buka aplikasi Unblur pada perangkat Android Anda.
 2. Pada layar splash screen, pastikan semua izin yang diperlukan telah diberikan. Jika belum, aplikasi akan meminta izin yang dibutuhkan.
 3. Setelah izin diberikan, Anda akan diarahkan ke layar unggah gambar.
-4. Klik pada kotak "Click to Upload" untuk memilih gambar dari galeri Anda.
+4. Klik pada kotak "Click to Upload" untuk memilih gambar dari galeri Anda. (Maksimal 2 MB)
 5. Gambar yang dipilih akan diunggah ke server After untuk diproses.
 6. Setelah pemrosesan selesai, Anda akan diarahkan ke layar hasil.
 7. Anda dapat membandingkan gambar sebelum dan sesudah pemrosesan.
