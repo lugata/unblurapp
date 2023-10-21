@@ -293,7 +293,7 @@ suspend fun sendImageToAfter(image: Bitmap, afterService: AfterService): AfterRe
         val imageUrl = imageRef.downloadUrl.await().toString()
 
         val afterRequest = AfterRequest(
-            version = "7de2ea26c616d5bf2245ad0d5e24f0ff9a6204578a5c876db53142edd9d2cd56",
+            version = "78f2bab438ab0ffc85a68cdfd316a2ecd3994b5dd26aa6b3d203357b45e5eb1b",
             input = InputData(image = imageUrl)
         )
 
